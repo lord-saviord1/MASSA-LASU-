@@ -1,0 +1,287 @@
+<div id="libraryPage" class="page">
+    <div class="library-hero">
+      <link rel="stylesheet" href="library.css">
+        <div class="library-hero-container">
+            <h1>MASSA Library</h1>
+            <p>Access course materials, past questions, and academic resources — open to all FMS students.</p>
+        </div>
+    </div>
+
+    <div class="library-section">
+        <div class="library-container">
+            <!-- Search and Filters -->
+            <div class="library-search-box">
+                <div class="search-wrapper">
+                    <input type="text" class="search-input" placeholder="Search materials, courses, or codes...">
+                    <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <circle cx="7" cy="7" r="5.5" stroke="#99A1AF" stroke-width="1.33"/>
+                        <path d="M11 11L14 14" stroke="#99A1AF" stroke-width="1.33" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <select class="library-filter">
+                    <option>All Departments</option>
+                    <option>Accounting</option>
+                    <option>Banking & Finance</option>
+                    <option>Business Administration</option>
+                    <option>Insurance</option>
+                    <option>Industrial Relations</option>
+                    <option>Marketing</option>
+                </select>
+                <select class="library-filter">
+                    <option>All Levels</option>
+                    <option>100 Level</option>
+                    <option>200 Level</option>
+                    <option>300 Level</option>
+                    <option>400 Level</option>
+                </select>
+                <select class="library-filter">
+                    <option>All Sessions</option>
+                    <option>2023/2024</option>
+                    <option>2022/2023</option>
+                    <option>2021/2022</option>
+                </select>
+                <select class="library-filter">
+                    <option>All Content</option>
+                    <option>Slides</option>
+                    <option>Notes</option>
+                    <option>PDFs</option>
+                </select>
+            </div>
+
+            <!-- Learning Materials Section -->
+            <div class="library-section-header">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect x="4" y="2" width="16" height="4" rx="1" stroke="#155DFC" stroke-width="2"/>
+                    <rect x="8" y="8" width="8" height="3" rx="1" stroke="#155DFC" stroke-width="2"/>
+                    <rect x="8" y="13" width="8" height="3" rx="1" stroke="#155DFC" stroke-width="2"/>
+                    <rect x="8" y="18" width="8" height="3" rx="1" stroke="#155DFC" stroke-width="2"/>
+                </svg>
+                <h2>Learning Materials</h2>
+            </div>
+
+            <div class="library-grid">
+                <!-- Material Card 1 - REPLACE LINKS BELOW -->
+                <div class="library-card">
+                    <div class="library-card-header">
+                        <div class="library-card-badges">
+                            <span class="badge badge-material-slides">slides</span>
+                            <span class="badge badge-verified">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path d="M2 6L5 9L10 4" stroke="#00A63E" stroke-width="1" stroke-linecap="round"/>
+                                </svg>
+                                Verified
+                            </span>
+                        </div>
+                        <h3>Introduction to Accounting</h3>
+                        <button class="bookmark-btn">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M3 3L3 17L10 13L17 17V3C17 2.44772 16.5523 2 16 2H4C3.44772 2 3 2.44772 3 3Z" stroke="#00A63E" stroke-width="1.67"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="library-card-body">
+                        <div class="library-card-info">
+                            <div class="info-row">
+                                <span class="info-label">ACC 101</span>
+                                <span class="badge badge-level">100 Level</span>
+                            </div>
+                            <p class="info-text">Principles of Accounting I</p>
+                            <p class="info-department">Accounting</p>
+                        </div>
+
+                        <div class="library-card-meta">
+                            <div class="meta-row">
+                                <span class="meta-label">Session:</span>
+                                <span class="meta-value">2023/2024</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">Semester:</span>
+                                <span class="meta-value">First</span>
+                            </div>
+                        </div>
+
+                        <div class="library-card-actions">
+                            <!-- REPLACE WITH YOUR PDF LINK -->
+                            <a href="YOUR_PDF_LINK_HERE" target="_blank" class="btn-library-preview">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <circle cx="8" cy="8" r="6" stroke="white" stroke-width="1.33"/>
+                                    <circle cx="8" cy="8" r="2" stroke="white" stroke-width="1.33"/>
+                                </svg>
+                                Preview
+                            </a>
+                            <!-- REPLACE WITH YOUR PDF LINK - download attribute forces download -->
+                            <a href="YOUR_PDF_LINK_HERE" download class="btn-library-download">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M8 2V10M8 10L11 7M8 10L5 7" stroke="#0A0A0A" stroke-width="1.33" stroke-linecap="round"/>
+                                    <path d="M2 10V13C2 13.5523 2.44772 14 3 14H13C13.5523 14 14 13.5523 14 13V10" stroke="#0A0A0A" stroke-width="1.33" stroke-linecap="round"/>
+                                </svg>
+                                Download
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Material Card 2 -->
+                <div class="library-card">
+                    <div class="library-card-header">
+                        <div class="library-card-badges">
+                            <span class="badge badge-material-notes">notes</span>
+                            <span class="badge badge-verified">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path d="M2 6L5 9L10 4" stroke="#00A63E" stroke-width="1" stroke-linecap="round"/>
+                                </svg>
+                                Verified
+                            </span>
+                        </div>
+                        <h3>Double Entry System Notes</h3>
+                        <button class="bookmark-btn">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M3 3L3 17L10 13L17 17V3C17 2.44772 16.5523 2 16 2H4C3.44772 2 3 2.44772 3 3Z" stroke="#155DFC" stroke-width="1.67"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="library-card-body">
+                        <div class="library-card-info">
+                            <div class="info-row">
+                                <span class="info-label">ACC 102</span>
+                                <span class="badge badge-level">100 Level</span>
+                            </div>
+                            <p class="info-text">Principles of Accounting II</p>
+                            <p class="info-department">Accounting</p>
+                        </div>
+
+                        <div class="library-card-meta">
+                            <div class="meta-row">
+                                <span class="meta-label">Session:</span>
+                                <span class="meta-value">2023/2024</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">Semester:</span>
+                                <span class="meta-value">Second</span>
+                            </div>
+                        </div>
+
+                        <div class="library-card-actions">
+                            <a href="YOUR_PDF_LINK_HERE" target="_blank" class="btn-library-preview">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <circle cx="8" cy="8" r="6" stroke="white" stroke-width="1.33"/>
+                                    <circle cx="8" cy="8" r="2" stroke="white" stroke-width="1.33"/>
+                                </svg>
+                                Preview
+                            </a>
+                            <a href="YOUR_PDF_LINK_HERE" download class="btn-library-download">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M8 2V10M8 10L11 7M8 10L5 7" stroke="#0A0A0A" stroke-width="1.33" stroke-linecap="round"/>
+                                    <path d="M2 10V13C2 13.5523 2.44772 14 3 14H13C13.5523 14 14 13.5523 14 13V10" stroke="#0A0A0A" stroke-width="1.33" stroke-linecap="round"/>
+                                </svg>
+                                Download
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more cards by copying the pattern above -->
+            </div>
+
+            <!-- Pagination -->
+            <div class="library-pagination">
+                <button class="pagination-btn" disabled>Previous</button>
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn">2</button>
+                <button class="pagination-btn">3</button>
+                <button class="pagination-btn">4</button>
+                <span class="pagination-dots">...</span>
+                <button class="pagination-btn">12</button>
+                <button class="pagination-btn">Next</button>
+            </div>
+
+            <!-- Past Questions Section -->
+            <div class="library-section-header" style="margin-top: 3rem;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect x="4" y="2" width="16" height="4" rx="1" stroke="#00A63E" stroke-width="2"/>
+                    <rect x="8" y="8" width="8" height="3" rx="1" stroke="#00A63E" stroke-width="2"/>
+                    <rect x="8" y="13" width="8" height="3" rx="1" stroke="#00A63E" stroke-width="2"/>
+                    <rect x="8" y="18" width="8" height="3" rx="1" stroke="#00A63E" stroke-width="2"/>
+                </svg>
+                <h2>Past Questions</h2>
+            </div>
+
+            <div class="library-grid">
+                <!-- Past Question Card 1 -->
+                <div class="past-question-card">
+                    <div class="library-card-header">
+                        <div class="library-card-badges">
+                            <span class="badge badge-exam-final">final Exam</span>
+                            <span class="badge badge-verified">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path d="M2 6L5 9L10 4" stroke="#00A63E" stroke-width="1" stroke-linecap="round"/>
+                                </svg>
+                                Verified
+                            </span>
+                        </div>
+                        <h3 class="past-question-title">ACC 211 - 2023</h3>
+                        <button class="bookmark-btn">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M3 3L3 17L10 13L17 17V3C17 2.44772 16.5523 2 16 2H4C3.44772 2 3 2.44772 3 3Z" stroke="#00A63E" stroke-width="1.67"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="library-card-body">
+                        <div class="library-card-info">
+                            <div class="info-row">
+                                <span class="info-label">ACC 211</span>
+                                <span class="badge badge-level">200 Level</span>
+                            </div>
+                            <p class="info-text">Financial Accounting I</p>
+                            <p class="info-department">Accounting</p>
+                        </div>
+
+                        <div class="library-card-meta">
+                            <div class="meta-row">
+                                <span class="meta-label">Session:</span>
+                                <span class="meta-value">2022/2023</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">Semester:</span>
+                                <span class="meta-value">First</span>
+                            </div>
+                        </div>
+
+                        <div class="past-question-actions">
+                            <!-- REPLACE WITH YOUR QUESTION PDF LINK -->
+                            <a href="YOUR_QUESTION_PDF_LINK" download class="btn-past-question">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M8 2V10M8 10L11 7M8 10L5 7" stroke="white" stroke-width="1.33" stroke-linecap="round"/>
+                                    <path d="M2 10V13C2 13.5523 2.44772 14 3 14H13C13.5523 14 14 13.5523 14 13V10" stroke="white" stroke-width="1.33" stroke-linecap="round"/>
+                                </svg>
+                                Download Questions (800 KB)
+                            </a>
+                            <!-- REPLACE WITH YOUR SOLUTION PDF LINK -->
+                            <a href="YOUR_SOLUTION_PDF_LINK" download class="btn-past-question-secondary">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M8 2V10M8 10L11 7M8 10L5 7" stroke="#0A0A0A" stroke-width="1.33" stroke-linecap="round"/>
+                                    <path d="M2 10V13C2 13.5523 2.44772 14 3 14H13C13.5523 14 14 13.5523 14 13V10" stroke="#0A0A0A" stroke-width="1.33" stroke-linecap="round"/>
+                                </svg>
+                                Download Solutions (1.2 MB)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more past question cards here -->
+            </div>
+
+            <!-- Pagination -->
+            <div class="library-pagination">
+                <button class="pagination-btn" disabled>Previous</button>
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn">2</button>
+                <button class="pagination-btn">3</button>
+                <button class="pagination-btn">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
