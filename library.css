@@ -1,0 +1,366 @@
+/* Library Styles */
+.library-hero {
+    background: white;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+    padding: 2rem 1rem;
+}
+
+.library-hero-container {
+    max-width: 1216px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.library-hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #101828;
+    margin-bottom: 1rem;
+}
+
+.library-hero p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: #4A5565;
+    max-width: 608px;
+    margin: 0 auto;
+}
+
+.library-section {
+    background: #F9FAFB;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+}
+
+.library-container {
+    max-width: 1368px;
+    margin: 0 auto;
+}
+
+.library-search-box {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 14px;
+    padding: 25px;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.library-filter {
+    padding: 9px 13px;
+    background: #F3F3F5;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #0A0A0A;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.library-filter:hover {
+    background: #e5e7eb;
+}
+
+.library-filter:focus {
+    outline: 2px solid #2563eb;
+}
+
+.library-section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.library-section-header h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #101828;
+}
+
+.library-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.library-card,
+.past-question-card {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 14px;
+    padding: 1px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.library-card:hover,
+.past-question-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.library-card-header {
+    padding: 24px 24px 6px;
+    position: relative;
+}
+
+.library-card-badges {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.badge-material-slides {
+    background: #DBEAFE;
+    color: #193CB8;
+}
+
+.badge-material-notes {
+    background: #FEF3C7;
+    color: #92400E;
+}
+
+.badge-material-pdf {
+    background: #FEE2E2;
+    color: #991B1B;
+}
+
+.badge-verified {
+    background: #DCFCE7;
+    color: #00A63E;
+}
+
+.badge-exam-final {
+    background: #FEE2E2;
+    color: #991B1B;
+}
+
+.badge-exam-midterm {
+    background: #FFEDD4;
+    color: #9F2D00;
+}
+
+.badge-level {
+    background: #F3F4F6;
+    color: #4B5563;
+}
+
+.library-card-header h3,
+.past-question-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #0A0A0A;
+    margin-bottom: 8px;
+}
+
+.bookmark-btn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bookmark-btn:hover {
+    background: #f3f4f6;
+}
+
+.library-card-body {
+    padding: 0 24px 24px;
+}
+
+.library-card-info {
+    margin-bottom: 16px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.info-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #2563EB;
+}
+
+.info-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #4A5565;
+    margin-bottom: 4px;
+}
+
+.info-department {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    color: #6A7282;
+}
+
+.library-card-meta {
+    padding: 16px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 16px;
+}
+
+.meta-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.meta-row:last-child {
+    margin-bottom: 0;
+}
+
+.meta-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #6A7282;
+}
+
+.meta-value {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #0A0A0A;
+}
+
+.library-card-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-library-preview {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: #2563EB;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-library-preview:hover {
+    background: #1d4ed8;
+}
+
+.btn-library-download {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #0A0A0A;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-library-download:hover {
+    background: #f3f4f6;
+}
+
+.past-question-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.btn-past-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: #00A63E;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-past-question:hover {
+    background: #008533;
+}
+
+.btn-past-question-secondary {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #0A0A0A;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-past-question-secondary:hover {
+    background: #f3f4f6;
+}
+
+.library-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
+}
+
+.pagination-dots {
+    color: #6A7282;
+    font-size: 14px;
+    padding: 0 4px;
+}
+
+@media (min-width: 768px) {
+    .library-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
