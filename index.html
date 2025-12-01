@@ -1,0 +1,2447 @@
+<!DOCTYPE html>
+  <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MASSA Student Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: white;
+            color: #1f2937;
+        }
+
+        nav {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo {
+            width: 48px;
+            height: 48px;
+            background: #2563eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.125rem;
+            font-weight: bold;
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .nav-links {
+            display: none;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #6b7280;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #1f2937;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            padding: 0.5rem 1.25rem;
+            border-radius: 0.5rem;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            padding: 1rem;
+        }
+
+        .mobile-menu.show {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #6b7280;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu a:hover {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.95) 0%, rgba(29, 78, 216, 0.95) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%232563eb" width="1200" height="600"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 8rem 1rem 10rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(37, 99, 235, 0.3) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 48rem;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-hero-primary {
+            background: white;
+            color: #2563eb;
+            padding: 0.875rem 2rem;
+            border-radius: 0.5rem;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-hero-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-hero-secondary {
+            background: transparent;
+            color: white;
+            padding: 0.875rem 2rem;
+            border-radius: 0.5rem;
+            border: 2px solid white;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-hero-secondary:hover {
+            background: white;
+            color: #2563eb;
+        }
+
+        .stats-container {
+            max-width: 1280px;
+            margin: -4rem auto 0;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-icon {
+            width: 4rem;
+            height: 4rem;
+            background: #eff6ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+        }
+
+        .stat-number {
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .welcome-section {
+            padding: 5rem 1rem;
+            background: white;
+        }
+
+        .welcome-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .welcome-image,
+        .speaker-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-radius: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .welcome-text h2,
+        .speaker-text h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .welcome-text h3,
+        .speaker-text h3 {
+            font-size: 1.125rem;
+            color: #2563eb;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .welcome-text p,
+        .speaker-text p {
+            color: #6b7280;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .speaker-section {
+            padding: 5rem 1rem;
+            background: #f9fafb;
+        }
+
+        .speaker-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .explore-section {
+            padding: 5rem 1rem;
+            background: white;
+        }
+
+        .explore-header {
+            text-align: center;
+            max-width: 48rem;
+            margin: 0 auto 3rem;
+        }
+
+        .explore-header h2 {
+            font-size: 2.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .explore-header p {
+            color: #6b7280;
+            font-size: 1.125rem;
+            line-height: 1.6;
+        }
+
+        .explore-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .explore-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .explore-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border-color: #2563eb;
+        }
+
+        .explore-icon {
+            width: 4rem;
+            height: 4rem;
+            background: #eff6ff;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .explore-card h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.75rem;
+            color: #1f2937;
+        }
+
+        .explore-card p {
+            color: #6b7280;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .explore-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .explore-link:hover {
+            color: #1d4ed8;
+        }
+
+        .cta-section {
+            padding: 5rem 1rem;
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 48rem;
+            margin: 0 auto;
+        }
+
+        .cta-container h2 {
+            font-size: 2.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .cta-container p {
+            font-size: 1.125rem;
+            color: #d1d5db;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta-primary {
+            background: #2563eb;
+            color: white;
+            padding: 0.875rem 2rem;
+            border-radius: 0.5rem;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cta-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-cta-secondary {
+            background: transparent;
+            color: white;
+            padding: 0.875rem 2rem;
+            border-radius: 0.5rem;
+            border: 2px solid white;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cta-secondary:hover {
+            background: white;
+            color: #1f2937;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .auth-section {
+            min-height: 100vh;
+            background: #f9fafb;
+            padding: 3rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auth-container {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: 100%;
+            max-width: 28rem;
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .auth-icon {
+            width: 4rem;
+            height: 4rem;
+            background: #eff6ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+        }
+
+        .auth-header h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .auth-header p {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .auth-tabs {
+            display: flex;
+            background: #f3f4f6;
+            border-radius: 0.5rem;
+            padding: 0.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 0.625rem;
+            border: none;
+            background: transparent;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            color: #6b7280;
+        }
+
+        .auth-tab.active {
+            background: white;
+            color: #1f2937;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.625rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .password-input {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.25rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .form-hint {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .forgot-password {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .news-section {
+            min-height: 100vh;
+            background: #F9FAFB;
+            padding: 2rem 1rem;
+        }
+
+        .news-container {
+            max-width: 1368px;
+            margin: 0 auto;
+        }
+
+        .search-box {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 14px;
+            padding: 25px;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-wrapper {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 9px 13px 9px 45px;
+            background: #F3F3F5;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: #0A0A0A;
+        }
+
+        .search-input::placeholder {
+            color: #717182;
+        }
+
+        .search-input:focus {
+            outline: 2px solid #2563eb;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .category-filter {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 9px 13px;
+            background: #F3F3F5;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: #0A0A0A;
+            transition: background 0.3s ease;
+        }
+
+        .category-filter:hover {
+            background: #e5e7eb;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .news-card {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 320px;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-placeholder {
+            font-size: 5rem;
+        }
+
+        .news-content {
+            padding: 24px;
+        }
+
+        .news-header {
+            margin-bottom: 8px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 9px;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .badge-academic {
+            background: #DBEAFE;
+            color: #193CB8;
+        }
+
+        .badge-important {
+            background: #FFEDD4;
+            color: #9F2D00;
+        }
+
+        .badge-events {
+            background: #DCFCE7;
+            color: #016630;
+        }
+
+        .badge-urgent {
+            background: #FFE2E2;
+            color: #9F0712;
+        }
+
+        .news-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 28px;
+            color: #0A0A0A;
+            margin-bottom: 8px;
+        }
+
+        .news-excerpt {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            line-height: 24px;
+            color: #4A5565;
+            margin-bottom: 8px;
+        }
+
+        .news-meta {
+            display: flex;
+            gap: 16px;
+            padding: 4px 0;
+            margin-bottom: 12px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: #6A7282;
+        }
+
+        .news-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .views {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: #6A7282;
+        }
+
+        .read-more-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 11px;
+            background: #1D4FD7;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .read-more-btn:hover {
+            background: #1a40b8;
+            transform: translateX(2px);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .pagination-btn {
+            padding: 6px 13px;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #0A0A0A;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-btn:hover {
+            background: #f3f4f6;
+        }
+
+        .pagination-btn.active {
+            background: #1D4FD7;
+            color: white;
+        }
+
+        .events-hero {
+            background: white;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+            padding: 2rem 1rem;
+        }
+
+        .events-hero-container {
+            max-width: 1216px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .events-hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: #101828;
+            margin-bottom: 1rem;
+        }
+
+        .events-hero p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            color: #4A5565;
+            max-width: 608px;
+            margin: 0 auto;
+        }
+
+        .events-section {
+            background: #F9FAFB;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .events-container {
+            max-width: 1368px;
+            margin: 0 auto;
+        }
+
+        .events-section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .events-section-header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #101828;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .event-card {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 14px;
+            padding: 1px;
+            overflow: hidden;
+        }
+
+        .event-card-header {
+            padding: 24px 24px 6px;
+        }
+
+        .event-card-header span.badge {
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .event-card-header h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 400;
+            color: #0A0A0A;
+            margin-bottom: 8px;
+        }
+
+        .event-description {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            line-height: 20px;
+            color: #4A5565;
+        }
+
+        .event-card-body {
+            padding: 0 24px 24px;
+        }
+
+        .event-details {
+            margin-bottom: 16px;
+        }
+
+        .event-detail-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .event-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: #0A0A0A;
+        }
+
+        .event-location {
+            width: 100%;
+        }
+
+        .event-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .event-attendance {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: #6A7282;
+        }
+
+        .event-organizer {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: #6A7282;
+        }
+
+        .event-rsvp {
+            padding-top: 17px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            margin-bottom: 16px;
+        }
+
+        .event-rsvp p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #0A0A0A;
+            margin-bottom: 12px;
+        }
+
+        .rsvp-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .rsvp-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 11px;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #0A0A0A;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .rsvp-btn:hover {
+            background: #f3f4f6;
+        }
+
+        .event-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 17px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .event-action-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #0A0A0A;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .event-action-btn:hover {
+            background: #f3f4f6;
+        }
+
+        .event-view-btn {
+            padding: 6px 12px;
+            background: #2563EB;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .event-view-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .badge-event-general {
+            background: #E0F2FE;
+            color: #1E40AF;
+        }
+
+        .badge-event-career {
+            background: #E0F2FE;
+            color: #1E40AF;
+        }
+
+        .badge-event-workshop {
+            background: #E0F2FE;
+            color: #1E40AF;
+        }
+
+        .badge-event-entertainment {
+            background: #E0F2FE;
+            color: #1E40AF;
+        }
+
+        .badge-past {
+            background: white;
+            color: #6A7282;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .past-event-card {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 14px;
+            padding: 1px;
+            margin-bottom: 2rem;
+            max-width: 596px;
+        }
+
+        .past-event-header {
+            padding: 24px 24px 0;
+        }
+
+        .past-event-badges {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .past-event-header h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 400;
+            color: #0A0A0A;
+            margin-bottom: 8px;
+        }
+
+        .past-event-header p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            line-height: 20px;
+            color: #4A5565;
+            margin-bottom: 16px;
+        }
+
+        .past-event-body {
+            padding: 0 24px 24px;
+        }
+
+        .past-event-info {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .past-event-photos {
+            margin-bottom: 16px;
+        }
+
+        .past-event-photos h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: #0A0A0A;
+            margin-bottom: 8px;
+        }
+
+        .photo-grid {
+            display: flex;
+            gap: 8px;
+        }
+
+        .photo-placeholder {
+            width: 64px;
+            height: 64px;
+            background: #E5E7EB;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .past-event-actions {
+            display: flex;
+            gap: 8px;
+            padding-top: 17px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap;
+        }
+
+        .rsvp-empty-state {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 14px;
+            padding: 48px 24px;
+            text-align: center;
+        }
+
+        .rsvp-empty-state svg {
+            margin: 0 auto 16px;
+        }
+
+        .rsvp-empty-state h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            color: #101828;
+            margin-bottom: 8px;
+        }
+
+        .rsvp-empty-state p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            color: #6A7282;
+        }
+
+
+
+        footer {
+            background: #2563eb;
+            color: white;
+            padding: 3rem 1rem;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2563eb;
+            font-size: 1.25rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.125rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p,
+        .footer-section ul {
+            color: #bfdbfe;
+            font-size: 0.875rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #bfdbfe;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(191, 219, 254, 0.3);
+            padding-top: 2rem;
+            text-align: center;
+            color: #bfdbfe;
+            font-size: 0.875rem;
+        }
+
+        @media (min-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .explore-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .welcome-container,
+            .speaker-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .events-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .nav-links {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo-section">
+                <div class="logo">🎓</div>
+                <div class="logo-text">
+                    <h1>MASSA</h1>
+                    <p>Management Sciences Students' Association</p>
+                </div>
+            </div>
+
+            <div class="nav-links">
+                <a onclick="navigateTo('home')">Home</a>
+                <a onclick="navigateTo('news')">News & Announcements</a>
+                <a onclick="navigateTo('library')">Library</a>
+                <a onclick="navigateTo('events')">Events</a>
+                <a onclick="navigateTo('leadership')">Leadership</a>
+                <a onclick="navigateTo('tools')">Tools</a>
+                <a>About ▼</a>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <button class="btn-primary" onclick="navigateTo('auth')">Sign In</button>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            </div>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <a onclick="navigateTo('home')">Home</a>
+            <a onclick="navigateTo('news')">News & Announcements</a>
+            <a onclick="navigateTo('library')">Library</a>
+            <a onclick="navigateTo('events')">Events</a>
+            <a onclick="navigateTo('leadership')">Leadership</a>
+            <a onclick="navigateTo('tools')">Tools</a>
+            <a>About</a>
+        </div>
+    </nav>
+
+    <div id="homePage" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">Welcome to MASSA-LASU</div>
+                <h1>Management Sciences Students' Association</h1>
+                <p>Your digital home for academic excellence, community connection, and professional growth at the Faculty of Management Sciences, Lagos State University.</p>
+                <div class="hero-buttons">
+                    <button class="btn-hero-primary" onclick="alert('Library access coming soon!')">📚 Access Library</button>
+                    <button class="btn-hero-secondary" onclick="alert('Learn more coming soon!')">ℹ️ Learn More</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="stats-container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: #2563eb;">👁️</div>
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Departments</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: #2563eb;">👥</div>
+                    <div class="stat-number">8000+</div>
+                    <div class="stat-label">Students</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: #2563eb;">💡</div>
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Resources</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: #2563eb;">📅</div>
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Events Yearly</div>
+                </div>
+            </div>
+        </div>
+
+        <section class="welcome-section">
+            <div class="welcome-container">
+                <div class="welcome-image">
+                    <div class="image-placeholder">
+                        <div style="font-size: 4rem;">👨‍🎓</div>
+                        <p style="margin-top: 1rem; color: #6b7280;">MASSA President</p>
+                    </div>
+                </div>
+                <div class="welcome-text">
+                    <h2>Welcome Address</h2>
+                    <h3>Amb. Kelvin Osadebe - MASSA President</h3>
+                    <p>Welcome to the Official Website of the Management Sciences Students' Association, Lagos State University.</p>
+                    <p>It is with great pride and purpose that we unveil this digital platform, an essential milestone in our collective journey toward academic excellence and student empowerment within the faculty.</p>
+                    <p>This website serves as a hub of information, a window into the evolving vision, values, and vibrant community that defines Massa-Lasu.</p>
+                    <p>Our leadership mission is to cultivate a more conscious, inclusive, and intellectually stimulating environment where every student can thrive. Through strategic initiatives, advocacy, and collaboration, we are committed to advancing the welfare of all Massa-lasultes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="speaker-section">
+            <div class="speaker-container">
+                <div class="speaker-text">
+                    <h2>Speaker's Welcome Address</h2>
+                    <h3>Speaker, Faculty of Management Sciences</h3>
+                    <p>Welcome to our amazing faculty!</p>
+                    <p>We're all about academic excellence, bold innovation and shaping tomorrow's leaders. Our programs are designed to equip students with the skills, mindset, and knowledge they need to thrive in today's fast-moving world.</p>
+                    <p>Thanks for joining our vibrant community, we're excited to have you on this journey with us!</p>
+                </div>
+                <div class="speaker-image">
+                    <div class="image-placeholder">
+                        <div style="font-size: 4rem;">👨‍💼</div>
+                        <p style="margin-top: 1rem; color: #6b7280;">Faculty Speaker</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="explore-section">
+            <div class="explore-header">
+                <h2>Explore MASSA</h2>
+                <p>Discover the comprehensive platform designed to support your academic journey and connect you with opportunities</p>
+            </div>
+
+            <div class="explore-grid">
+                <div class="explore-card">
+                    <div class="explore-icon">📚</div>
+                    <h3>Digital Library</h3>
+                    <p>Access comprehensive study materials, past questions, and lecture notes organized by department and level.</p>
+                    <a href="#" onclick="alert('Library coming soon!'); return false;" class="explore-link">Explore →</a>
+                </div>
+
+                <div class="explore-card">
+                    <div class="explore-icon">📅</div>
+                    <h3>Events & Calendar</h3>
+                    <p>Stay updated with academic calendar, faculty events, examinations, and MASSA activities.</p>
+                    <a href="#" onclick="alert('Events coming soon!'); return false;" class="explore-link">Explore →</a>
+                </div>
+
+                <div class="explore-card">
+                    <div class="explore-icon">🏆</div>
+                    <h3>Projects & Achievements</h3>
+                    <p>Showcase student innovations, academic excellence, and celebrate our community's success stories.</p>
+                    <a href="#" onclick="alert('Projects coming soon!'); return false;" class="explore-link">Explore →</a>
+                </div>
+
+                <div class="explore-card">
+                    <div class="explore-icon">👥</div>
+                    <h3>Leadership & Associations</h3>
+                    <p>Meet MASSA leadership and explore the nine departments in the Faculty of Management Sciences.</p>
+                    <a href="#" onclick="alert('Leadership coming soon!'); return false;" class="explore-link">Explore →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-container">
+                <h2>You may be missing out</h2>
+                <p>Access exclusive resources, connect with peers, and take your academic journey to the next level</p>
+                <div class="cta-buttons">
+                    <button class="btn-cta-primary" onclick="alert('Library access coming soon!')">📚 Access Library</button>
+                    <button class="btn-cta-secondary" onclick="alert('Explore MASSA coming soon!')">🔍 Explore MASSA</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="eventsPage" class="page">
+        <div class="events-hero">
+            <div class="events-hero-container">
+                <h1>Events</h1>
+                <p>Stay updated with upcoming events, examination schedules, and important academic dates.</p>
+            </div>
+        </div>
+
+        <div class="events-section">
+            <div class="events-container">
+                <!-- Search Box -->
+                <div class="search-box">
+                    <div class="search-wrapper">
+                        <input type="text" class="search-input" placeholder="Search events...">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <circle cx="7" cy="7" r="5.5" stroke="#99A1AF" stroke-width="1.33"/>
+                            <path d="M11 11L14 14" stroke="#99A1AF" stroke-width="1.33" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Upcoming Events -->
+                <div class="events-section-header">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <rect x="3" y="4" width="18" height="16" rx="2" stroke="#155DFC" stroke-width="2"/>
+                        <path d="M3 10H21" stroke="#155DFC" stroke-width="2"/>
+                        <path d="M8 2V6M16 2V6" stroke="#155DFC" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <h2>Upcoming Events</h2>
+                </div>
+
+                <div class="events-grid">
+                    <!-- Event Card 1 -->
+                    <div class="event-card">
+                        <div class="event-card-header">
+                            <span class="badge badge-event-general">General Assembly</span>
+                            <h3>MASSA Annual General Meeting 2024</h3>
+                            <p class="event-description">Join us for the Annual General Meeting where we will discuss achievements, elect new executives, and plan for the upcoming academic year.</p>
+                        </div>
+
+                        <div class="event-card-body">
+                            <div class="event-details">
+                                <div class="event-detail-row">
+                                    <div class="event-detail-item">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <rect x="3" y="4" width="10" height="9" rx="1" stroke="#155DFC" stroke-width="1.33"/>
+                                            <path d="M3 7H13" stroke="#155DFC" stroke-width="1.33"/>
+                                            <path d="M6 2V4M10 2V4" stroke="#155DFC" stroke-width="1.33" stroke-linecap="round"/>
+                                        </svg>
+                                        <span>2/15/2024</span>
+                                    </div>
+                                    <div class="event-detail-item">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <circle cx="8" cy="8" r="6" stroke="#155DFC" stroke-width="1.33"/>
+                                            <path d="M8 4V8L11 10" stroke="#155DFC" stroke-width="1.33" stroke-linecap="round"/>
+                                        </svg>
+                                        <span>10:00 AM</span>
+                                    </div>
+                                </div>
+                                <div class="event-detail-item event-location">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 1C5.79 1 4 2.79 4 5C4 8.5 8 14 8 14C8 14 12 8.5 12 5C12 2.79 10.21 1 8 1Z" stroke="#155DFC" stroke-width="1.33"/>
+                                        <circle cx="8" cy="5" r="1.5" stroke="#155DFC" stroke-width="1.33"/>
+                                    </svg>
+                                    <span>Faculty Auditorium, FMS Building</span>
+                                </div>
+                            </div>
+
+                            <div class="event-meta">
+                                <div class="event-attendance">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M2 10L4 8L6 10L10 6L14 10" stroke="#6A7282" stroke-width="1.33"/>
+                                        <path d="M11 6H14V9" stroke="#6A7282" stroke-width="1.33"/>
+                                    </svg>
+                                    <span>245/300 attending</span>
+                                </div>
+                                <span class="event-organizer">by MASSA Executive Committee</span>
+                            </div>
+
+                            <div class="event-rsvp">
+                                <p><strong>RSVP Required</strong></p>
+                                <div class="rsvp-buttons">
+                                    <button class="rsvp-btn">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <path d="M4 8L7 11L12 6" stroke="currentColor" stroke-width="1.33" stroke-linecap="round"/>
+                                        </svg>
+                                        Yes
+                                    </button>
+                                    <button class="rsvp-btn">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <path d="M4 4L12 12M12 4L4 12" stroke="currentColor" stroke-width="1.33" stroke-linecap="round"/>
+                                        </svg>
+                                        No
+                                    </button>
+                                    <button class="rsvp-btn">Maybe</button>
+                                </div>
+                            </div>
+
+                            <div class="event-actions">
+                                <button class="event-action-btn">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 2V8L12 10" stroke="currentColor" stroke-width="1.33" stroke-linecap="round"/>
+                                        <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.33"/>
+                                    </svg>
+                                    Set Reminder
+                                </button>
+                                <button class="event-view-btn">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event Card 2 -->
+                    <div class="event-card">
+                        <div class="event-card-header">
+                            <span class="badge badge-event-career">Career Development</span>
+                            <h3>Career Fair 2024 - "Future Leaders Summit"</h3>
+                            <p class="event-description">Connect with top employers, attend workshops, and discover exciting career opportunities in management sciences.</p>
+                        </div>
+
+                        <div class="event-card-body">
+                            <div class="event-details">
+                                <div class="event-detail-row">
+                                    <div class="event-detail-item">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <rect x="3" y="4" width="10" height="9" rx="1" stroke="#155DFC" stroke-width="1.33"/>
+                                            <path d="M3 7H13" stroke="#155DFC" stroke-width="1.33"/>
+                                            <path d="M6 2V4M10 2V4" stroke="#155DFC" stroke-width="1.33" stroke-linecap="round"/>
+                                        </svg>
+                                        <span>2/22/2024</span>
+                                    </div>
+                                    <div class="event-detail-item">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <circle cx="8" cy="8" r="6" stroke="#155DFC" stroke-width="1.33"/>
+                                            <path d="M8 4V8L11 10" stroke="#155DFC" stroke-width="1.33" stroke-linecap="round"/>
+                                        </svg>
+                                        <span>9:00 AM</span>
+                                    </div>
+                                </div>
+                                <div class="event-detail-item event-location">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 1C5.79 1 4 2.79 4 5C4 8.5 8 14 8 14C8 14 12 8.5 12 5C12 2.79 10.21 1 8 1Z" stroke="#155DFC" stroke-width="1.33"/>
+                                        <circle cx="8" cy="5" r="1.5" stroke="#155DFC" stroke-width="1.33"/>
+                                    </svg>
+                                    <span>University Main Hall</span>
+                                </div>
+                            </div>
+
+                            <div class="event-meta">
+                                <div class="event-attendance">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M2 10L4 8L6 10L10 6L14 10" stroke="#6A7282" stroke-width="1.33"/>
+                                        <path d="M11 6H14V9" stroke="#6A7282" stroke-width="1.33"/>
+                                    </svg>
+                                    <span>156/500 attending</span>
+                                </div>
+                                <span class="event-organizer">by MASSA Career Development Committee</span>
+                            </div>
+
+                            <div class="event-rsvp">
+                                <p><strong>RSVP Required</strong></p>
+                                <div class="rsvp-buttons">
+                                    <button class="rsvp-btn">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <path d="M4 8L7 11L12 6" stroke="currentColor" stroke-width="1.33" stroke-linecap="round"/>
+                                        </svg>
+                                        Yes
+                                    </button>
+                                    <button class="rsvp-btn">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <path d="M4 4L12 12M12 4L4 12" stroke="currentColor" stroke-width="1.33" stroke-linecap="round"/>
+                                        </svg>
+                                        No
+                                    </button>
+                                    <button class="rsvp-btn">Maybe</button>
+                                </div>
+                            </div>
+
+                            <div class="event-actions">
+                                <button class="event-action-btn">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 2V8L12 10" stroke="currentColor" stroke-width="1.33" stroke-linecap="round"/>
+                                        <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.33"/>
+                                    </svg>
+                                    Set Reminder
+                                </button>
+                                <button class="event-view-btn">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event Card 3 -->
+                    <div class="event-card">
+                        <div class="event-card-header">
+                            <span class="badge badge-event-workshop">Workshop</span>
+                            <h3>Financial Literacy Workshop</h3>
+                            <p class="event-description">Learn essential financial management skills including budgeting, investment basics, and financial planning for students.</p>
+                        </div>
+
+                        <div class="event-card-body">
+                            <div class="event-details">
+                                <div class="event-detail-row">
+                                    <div class="event-detail-item">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <rect x="3" y="4" width="10" height="9" rx="1" stroke="#155DFC" stroke-width="1.33"/>
+                                            <path d="M3 7H13" stroke="#155DFC" stroke-width="1.33"/>
+                                            <path d="M6 2V4M10 2V4" stroke="#155DFC" stroke-width="1.33" stroke-linecap="round"/>
+                                        </svg>
+                                        <span>2/28/2024</span>
+                                    </div>
+                                    <div class="event-detail-item">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <circle cx="8" cy="8" r="6" stroke="#155DFC" stroke-width="1.33"/>
+                                            <path d="M8 4V8L11 10" stroke="#155DFC" stroke-width="1.33" stroke-linecap="round"/>
+                                        </svg>
+                                        <span>2:00 PM</span>
+                                    </div>
+                                </div>
+                                <div class="event-detail-item event-location">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 1C5.79 1 4 2.79 4 5C4 8.5 8 14 8 14C8 14 12 8.5 12 5C12 2.79 10.21 1 8 1Z" stroke="#155DFC" stroke-width="1.33"/>
+                                        <circle cx="8" cy="5" r="1.5" stroke="#155DFC" stroke-width="1.33"/>
+                                    </svg>
+                                    <span>Room 301, FMS Building</span>
+                                </div>
+                            </div>
+
+                            <div class="event-meta">
+                                <div class="event-attendance">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M2 10L4 8L6 10L10 6L14 10" stroke="#6A7282" stroke-width="1.33"/>
+                                        <path d="M11 6H14V9" stroke="#6A7282" stroke-width="1.33"/>
+                                    </svg>
+                                    <span>89/100 attending</span>
+                                </div>
+                                <span class="event-organizer">by Banking and Finance Department</span>
+                            </div>
+
+                            <div class="event-rsvp">
+                                <p><strong>RSVP Required</strong></p>
+                                <div class="rsvp-buttons">
+                                    <button class="rsvp-btn">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <path d="M4 8L7 11L12 6" stroke="currentColor" stroke-width="1.33" stroke-linecap="round"/>
+                                        </svg>
+                                        Yes
+                                    </button>
+                                    <button class="rsvp-btn">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <path d="M4 4L12 12M12 4L4 12" stroke="currentColor" stroke-width="1.33" stroke-linecap="round"/>
+                                        </svg>
+                                        No
+                                    </button>
+                                    <button class="rsvp-btn">Maybe</button>
+                                </div>
+                            </div>
+
+                            <div class="event-actions">
+                                <button class="event-action-btn">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 2V8L12 10" stroke="currentColor" stroke-width="1.33" stroke-linecap="round"/>
+                                        <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.33"/>
+                                    </svg>
+                                    Set Reminder
+                                </button>
+                                <button class="event-view-btn">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Past Events -->
+                <div class="events-section-header" style="margin-top: 2rem;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <rect x="3" y="4" width="18" height="16" rx="2" stroke="#4A5565" stroke-width="2"/>
+                        <path d="M3 10H21" stroke="#4A5565" stroke-width="2"/>
+                        <path d="M8 2V6M16 2V6" stroke="#4A5565" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <h2>Past Events</h2>
+                </div>
+
+                <div class="past-event-card">
+                    <div class="past-event-header">
+                        <div class="past-event-badges">
+                            <span class="badge badge-event-entertainment">Entertainment</span>
+                            <span class="badge badge-past">Past Event</span>
+                        </div>
+                        <h3>MASSA Talent Hunt 2024</h3>
+                        <p>Annual talent competition showcasing the diverse skills and creativity of FMS students.</p>
+                    </div>
+
+                    <div class="past-event-body">
+                        <div class="past-event-info">
+                            <div class="event-detail-item">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <rect x="3" y="4" width="10" height="9" rx="1" stroke="#6A7282" stroke-width="1.33"/>
+                                    <path d="M3 7H13" stroke="#6A7282" stroke-width="1.33"/>
+                                    <path d="M6 2V4M10 2V4" stroke="#6A7282" stroke-width="1.33" stroke-linecap="round"/>
+                                </svg>
+                                <span>1/20/2024</span>
+                            </div>
+                            <div class="event-detail-item">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M2 10L4 8L6 10L10 6L14 10" stroke="#6A7282" stroke-width="1.33"/>
+                                    <path d="M11 6H14V9" stroke="#6A7282" stroke-width="1.33"/>
+                                </svg>
+                                <span>312 attended</span>
+                            </div>
+                        </div>
+
+                        <div class="past-event-photos">
+                            <h4>Event Photos</h4>
+                            <div class="photo-grid">
+                                <div class="photo-placeholder">📷</div>
+                                <div class="photo-placeholder">📷</div>
+                                <div class="photo-placeholder">📷</div>
+                            </div>
+                        </div>
+
+                        <div class="past-event-actions">
+                            <button class="event-action-btn">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.33"/>
+                                    <circle cx="5" cy="5" r="1" fill="currentColor"/>
+                                    <path d="M4 12L7 9L9 11L14 6" stroke="currentColor" stroke-width="1.33"/>
+                                </svg>
+                                View Gallery
+                            </button>
+                            <button class="rsvp-btn">Event Summary</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- My RSVPs -->
+                <div class="events-section-header" style="margin-top: 2rem;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M4 8L7 11L12 6" stroke="#00A63E" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <h2>My RSVPs</h2>
+                </div>
+
+                <div class="rsvp-empty-state">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <rect x="6" y="8" width="36" height="28" rx="2" stroke="#99A1AF" stroke-width="4"/>
+                        <path d="M6 16H42" stroke="#99A1AF" stroke-width="4"/>
+                        <path d="M16 4V8M32 4V8" stroke="#99A1AF" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                    <h3>No RSVPs yet</h3>
+                    <p>RSVP to upcoming events to see them here.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="newsPage" class="page">
+        <div class="news-section">
+            <div class="news-container">
+                <div class="search-box">
+                    <div class="search-wrapper">
+                        <input type="text" class="search-input" placeholder="Search news and announcements...">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <circle cx="7" cy="7" r="5.5" stroke="#99A1AF" stroke-width="1.33"/>
+                            <path d="M11 11L14 14" stroke="#99A1AF" stroke-width="1.33" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="category-filter">
+                        <span>All Categories</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" opacity="0.5">
+                            <path d="M4 6L8 10L12 6" stroke="#717182" stroke-width="1.33" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="news-grid">
+                    <!-- News Card 1 - Academic -->
+                    <div class="news-card">
+                        <div class="news-image">
+                            <div class="image-placeholder">📚</div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-header">
+                                <span class="badge badge-academic">Academic</span>
+                            </div>
+                            <h3 class="news-title">MASSA Executive Elections 2024 - Call for Nominations</h3>
+                            <p class="news-excerpt">Successfully launched the MASSA digital platform, connecting over 2,500 FMS students in one centralized hub.</p>
+                            <div class="news-meta">
+                                <div class="meta-item">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 4V8L11 11" stroke="#6A7282" stroke-width="1.33" stroke-linecap="round"/>
+                                        <circle cx="8" cy="8" r="6" stroke="#6A7282" stroke-width="1.33"/>
+                                    </svg>
+                                    <span>MASSA Admin</span>
+                                </div>
+                                <div class="meta-item">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <rect x="3" y="4" width="10" height="9" rx="1" stroke="#6A7282" stroke-width="1.33"/>
+                                        <path d="M3 7H13" stroke="#6A7282" stroke-width="1.33"/>
+                                        <path d="M6 2V4M10 2V4" stroke="#6A7282" stroke-width="1.33" stroke-linecap="round"/>
+                                    </svg>
+                                    <span>1/15/2025</span>
+                                </div>
+                            </div>
+                            <div class="news-footer">
+                                <div class="views">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M1 8C1 8 3.5 3.5 8 3.5C12.5 3.5 15 8 15 8C15 8 12.5 12.5 8 12.5C3.5 12.5 1 8 1 8Z" stroke="#6A7282" stroke-width="1.33"/>
+                                        <circle cx="8" cy="8" r="2" stroke="#6A7282" stroke-width="1.33"/>
+                                    </svg>
+                                    <span>342 views</span>
+                                </div>
+                                <button class="read-more-btn">
+                                    Read More
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M6 4L10 8L6 12" stroke="white" stroke-width="1.33" stroke-linecap="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- News Card 2 - Important -->
+                    <div class="news-card">
+                        <div class="news-image">
+                            <div class="image-placeholder">⚠️</div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-header">
+                                <span class="badge badge-important">Important</span>
+                            </div>
+                            <h3 class="news-title">Examination Timetable Update - Action Required</h3>
+                            <p class="news-excerpt">MASSA announces the opening of nominations for executive positions. All eligible students are encouraged to participate in the democratic process.</p>
+                            <div class="news-meta">
+                                <div class="meta-item">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 4V8L11 11" stroke="#6A7282" stroke-width="1.33" stroke-linecap="round"/>
+                                        <circle cx="8" cy="8" r="6" stroke="#6A7282" stroke-width="1.33"/>
+                                    </svg>
+                                    <span>MASSA Admin</span>
+                                </div>
+                                <div class="meta-item">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <rect x="3" y="4" width="10" height="9" rx="1" stroke="#6A7282" stroke-width="1.33"/>
+                                        <path d="M3 7H13" stroke="#6A7282" stroke-width="1.33"/>
+                                        <path d="M6 2V4M10 2V4" stroke="#6A7282" stroke-width="1.33" stroke-linecap="round"/>
+                                    </svg>
+                                    <span>1/15/2025</span>
+                                </div>
+                            </div>
+                            <div class="news-footer">
+                                <div class="views">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M1 8C1 8 3.5 3.5 8 3.5C12.5 3.5 15 8 15 8C15 8 12.5 12.5 8 12.5C3.5 12.5 1 8 1 8Z" stroke="#6A7282" stroke-width="1.33"/>
+                                        <circle cx="8" cy="8" r="2" stroke="#6A7282" stroke-width="1.33"/>
+                                    </svg>
+                                    <span>342 views</span>
+                                </div>
+                                <button class="read-more-btn">
+                                    Read More
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M6 4L10 8L6 12" stroke="white" stroke-width="1.33" stroke-linecap="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- News Card 3 - Events -->
+                    <div class="news-card">
+                        <div class="news-image">
+                            <div class="image-placeholder">🎭</div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-header">
+                                <span class="badge badge-events">Events</span>
+                            </div>
+                            <h3 class="news-title">MASSA Talent Hunt 2025 - Registration Open</h3>
+                            <p class="news-excerpt">Showcase your talents at the annual MASSA Talent Hunt! Registration is now open for all categories including singing, poetry...</p>
+                            <div class="news-meta">
+                                <div class="meta-item">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 4V8L11 11" stroke="#6A7282" stroke-width="1.33" stroke-linecap="round"/>
+                                        <circle cx="8" cy="8" r="6" stroke="#6A7282" stroke-width="1.33"/>
+                                    </svg>
+                                    <span>MASSA Admin</span>
+                                </div>
+                                <div class="meta-item">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <rect x="3" y="4" width="10" height="9" rx="1" stroke="#6A7282" stroke-width="1.33"/>
+                                        <path d="M3 7H13" stroke="#6A7282" stroke-width="1.33"/>
+                                        <path d="M6 2V4M10 2V4" stroke="#6A7282" stroke-width="1.33" stroke-linecap="round"/>
+                                    </svg>
+                                    <span>1/15/2025</span>
+                                </div>
+                            </div>
+                            <div class="news-footer">
+                                <div class="views">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M1 8C1 8 3.5 3.5 8 3.5C12.5 3.5 15 8 15 8C15 8 12.5 12.5 8 12.5C3.5 12.5 1 8 1 8Z" stroke="#6A7282" stroke-width="1.33"/>
+                                        <circle cx="8" cy="8" r="2" stroke="#6A7282" stroke-width="1.33"/>
+                                    </svg>
+                                    <span>342 views</span>
+                                </div>
+                                <button class="read-more-btn">
+                                    Read More
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M6 4L10 8L6 12" stroke="white" stroke-width="1.33" stroke-linecap="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- News Card 4 - Urgent -->
+                    <div class="news-card">
+                        <div class="news-image">
+                            <div class="image-placeholder">🚨</div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-header">
+                                <span class="badge badge-urgent">
+                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                        <path d="M6 1L6 7M6 10.5V10.5" stroke="#9F0712" stroke-width="1" stroke-linecap="round"/>
+                                    </svg>
+                                    Urgent
+                                </span>
+                            </div>
+                            <h3 class="news-title">Important Changes to Examination Schedule</h3>
+                            <p class="news-excerpt">Important changes to examination timetable. All students must check the updated schedule immediately.</p>
+                            <div class="news-meta">
+                                <div class="meta-item">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 4V8L11 11" stroke="#6A7282" stroke-width="1.33" stroke-linecap="round"/>
+                                        <circle cx="8" cy="8" r="6" stroke="#6A7282" stroke-width="1.33"/>
+                                    </svg>
+                                    <span>MASSA Admin</span>
+                                </div>
+                                <div class="meta-item">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <rect x="3" y="4" width="10" height="9" rx="1" stroke="#6A7282" stroke-width="1.33"/>
+                                        <path d="M3 7H13" stroke="#6A7282" stroke-width="1.33"/>
+                                        <path d="M6 2V4M10 2V4" stroke="#6A7282" stroke-width="1.33" stroke-linecap="round"/>
+                                    </svg>
+                                    <span>1/15/2025</span>
+                                </div>
+                            </div>
+                            <div class="news-footer">
+                                <div class="views">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M1 8C1 8 3.5 3.5 8 3.5C12.5 3.5 15 8 15 8C15 8 12.5 12.5 8 12.5C3.5 12.5 1 8 1 8Z" stroke="#6A7282" stroke-width="1.33"/>
+                                        <circle cx="8" cy="8" r="2" stroke="#6A7282" stroke-width="1.33"/>
+                                    </svg>
+                                    <span>342 views</span>
+                                </div>
+                                <button class="read-more-btn">
+                                    Read More
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M6 4L10 8L6 12" stroke="white" stroke-width="1.33" stroke-linecap="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- News Card 5 - Academic -->
+                    <div class="news-card">
+                        <div class="news-image">
+                            <div class="image-placeholder">📅</div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-header">
+                                <span class="badge badge-academic">Academic</span>
+                            </div>
+                            <h3 class="news-title">2024/2025 Academic Calendar Released</h3>
+                            <p class="news-excerpt">The Faculty of Management Sciences has released the academic calendar for the 2024/2025 session...</p>
+                            <div class="news-meta">
+                                <div class="meta-item">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 4V8L11 11" stroke="#6A7282" stroke-width="1.33" stroke-linecap="round"/>
+                                        <circle cx="8" cy="8" r="6" stroke="#6A7282" stroke-width="1.33"/>
+                                    </svg>
+                                    <span>MASSA Admin</span>
+                                </div>
+                                <div class="meta-item">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <rect x="3" y="4" width="10" height="9" rx="1" stroke="#6A7282" stroke-width="1.33"/>
+                                        <path d="M3 7H13" stroke="#6A7282" stroke-width="1.33"/>
+                                        <path d="M6 2V4M10 2V4" stroke="#6A7282" stroke-width="1.33" stroke-linecap="round"/>
+                                    </svg>
+                                    <span>1/15/2025</span>
+                                </div>
+                            </div>
+                            <div class="news-footer">
+                                <div class="views">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M1 8C1 8 3.5 3.5 8 3.5C12.5 3.5 15 8 15 8C15 8 12.5 12.5 8 12.5C3.5 12.5 1 8 1 8Z" stroke="#6A7282" stroke-width="1.33"/>
+                                        <circle cx="8" cy="8" r="2" stroke="#6A7282" stroke-width="1.33"/>
+                                    </svg>
+                                    <span>342 views</span>
+                                </div>
+                                <button class="read-more-btn">
+                                    Read More
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M6 4L10 8L6 12" stroke="white" stroke-width="1.33" stroke-linecap="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- News Card 6 - Academic -->
+                    <div class="news-card">
+                        <div class="news-image">
+                            <div class="image-placeholder">🎓</div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-header">
+                                <span class="badge badge-academic">Academic</span>
+                            </div>
+                            <h3 class="news-title">New Study Resources Available in Library</h3>
+                            <p class="news-excerpt">The Faculty of Management Sciences has released the academic calendar for the 2024/2025 session...</p>
+                            <div class="news-meta">
+                                <div class="meta-item">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 4V8L11 11" stroke="#6A7282" stroke-width="1.33" stroke-linecap="round"/>
+                                        <circle cx="8" cy="8" r="6" stroke="#6A7282" stroke-width="1.33"/>
+                                    </svg>
+                                    <span>MASSA Admin</span>
+                                </div>
+                                <div class="meta-item">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <rect x="3" y="4" width="10" height="9" rx="1" stroke="#6A7282" stroke-width="1.33"/>
+                                        <path d="M3 7H13" stroke="#6A7282" stroke-width="1.33"/>
+                                        <path d="M6 2V4M10 2V4" stroke="#6A7282" stroke-width="1.33" stroke-linecap="round"/>
+                                    </svg>
+                                    <span>1/15/2025</span>
+                                </div>
+                            </div>
+                            <div class="news-footer">
+                                <div class="views">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M1 8C1 8 3.5 3.5 8 3.5C12.5 3.5 15 8 15 8C15 8 12.5 12.5 8 12.5C3.5 12.5 1 8 1 8Z" stroke="#6A7282" stroke-width="1.33"/>
+                                        <circle cx="8" cy="8" r="2" stroke="#6A7282" stroke-width="1.33"/>
+                                    </svg>
+                                    <span>342 views</span>
+                                </div>
+                                <button class="read-more-btn">
+                                    Read More
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M6 4L10 8L6 12" stroke="white" stroke-width="1.33" stroke-linecap="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pagination">
+                    <button class="pagination-btn">Previous</button>
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="authPage" class="page">
+        <div class="auth-section">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <div class="auth-icon">👥</div>
+                    <h2>MASSA Student Portal</h2>
+                    <p>Sign in or create your account to access the digital library and student tools</p>
+                </div>
+
+                <div class="auth-tabs">
+                    <button class="auth-tab active" onclick="switchTab('signin')">Sign In</button>
+                    <button class="auth-tab" onclick="switchTab('signup')">Sign Up</button>
+                </div>
+
+                <form id="signinForm" class="auth-form active">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="john@gmail.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="password-input">
+                            <input type="password" id="pass1" placeholder="Enter your password">
+                            <button type="button" class="password-toggle" onclick="togglePass('pass1')">👁️</button>
+                        </div>
+                    </div>
+
+                    <div class="form-footer">
+                        <label class="checkbox-label">
+                            <input type="checkbox">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Sign In</button>
+                </form>
+
+                <form id="signupForm" class="auth-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name *</label>
+                            <input type="text" placeholder="Enter your first name">
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name *</label>
+                            <input type="text" placeholder="Enter your last name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" placeholder="john@gmail.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Matriculation Number *</label>
+                        <input type="text" placeholder="e.g., 240819021">
+                        <p class="form-hint">Enter your 9-digit matriculation number</p>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Department *</label>
+                            <select>
+                                <option>Select department</option>
+                                <option>Accounting</option>
+                                <option>Banking and Finance</option>
+                                <option>Business Administration</option>
+                                <option>Insurance</option>
+                                <option>Industrial Relations</option>
+                                <option>Marketing</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Level *</label>
+                            <select>
+                                <option>Select level</option>
+                                <option>100 Level</option>
+                                <option>200 Level</option>
+                                <option>300 Level</option>
+                                <option>400 Level</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password *</label>
+                        <div class="password-input">
+                            <input type="password" id="pass2" placeholder="Create a secure password">
+                            <button type="button" class="password-toggle" onclick="togglePass('pass2')">👁️</button>
+                        </div>
+                        <p class="form-hint">Minimum 8 characters with uppercase, lowercase, and numbers</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Confirm Password *</label>
+                        <div class="password-input">
+                            <input type="password" id="pass3" placeholder="Confirm your password">
+                            <button type="button" class="password-toggle" onclick="togglePass('pass3')">👁️</button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">🎓</div>
+                        <div>
+                            <h3>MASSA</h3>
+                            <p>Management Sciences Students' Association</p>
+                        </div>
+                    </div>
+                    <p>The digital home of the Faculty of Management Sciences - fostering academic excellence, innovation, and student empowerment at Lagos State University.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a onclick="navigateTo('home')">Home</a></li>
+                        <li><a onclick="navigateTo('library')">Library</a></li>
+                        <li><a onclick="navigateTo('news')">News & Announcements</a></li>
+                        <li><a onclick="navigateTo('events')">Events & Calendar</a></li>
+                        <li><a>Projects & Achievements</a></li>
+                        <li><a onclick="navigateTo('leadership')">Leadership</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>massa@lasu.edu.ng</li>
+                        <li>+234 800 MASSA-01</li>
+                        <li>Faculty of Management Sciences</li>
+                        <li>Lagos State University</li>
+                        <li>Ojo, Lagos State, Nigeria</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                © 2025 Management Sciences Students' Association. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function navigateTo(page) {
+            var pages = document.querySelectorAll('.page');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active');
+            }
+
+            var pageId = page + 'Page';
+            var targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            var menu = document.getElementById('mobileMenu');
+            menu.classList.remove('show');
+
+            window.scrollTo(0, 0);
+        }
+
+        function toggleMenu() {
+            var menu = document.getElementById('mobileMenu');
+            if (menu.classList.contains('show')) {
+                menu.classList.remove('show');
+            } else {
+                menu.classList.add('show');
+            }
+        }
+
+        function switchTab(tab) {
+            var tabs = document.querySelectorAll('.auth-tab');
+            var signinForm = document.getElementById('signinForm');
+            var signupForm = document.getElementById('signupForm');
+
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
+
+            if (tab === 'signin') {
+                tabs[0].classList.add('active');
+                signinForm.classList.add('active');
+                signupForm.classList.remove('active');
+            } else {
+                tabs[1].classList.add('active');
+                signinForm.classList.remove('active');
+                signupForm.classList.add('active');
+            }
+        }
+
+        function togglePass(id) {
+            var input = document.getElementById(id);
+            if (input.type === 'password') {
+                input.type = 'text';
+            } else {
+                input.type = 'password';
+            }
+        }
+
+        var forms = document.querySelectorAll('form');
+        for (var i = 0; i < forms.length; i++) {
+            forms[i].addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Form submitted! This is where backend integration would happen.');
+            });
+        }
+    </script>
+</body>
+</html>
