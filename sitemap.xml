@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage -->
+  <url>
+    <loc>https://lord-saviord1.github.io/MASSA-LASU-/</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Library page -->
+  <url>
+    <loc>https://lord-saviord1.github.io/MASSA-LASU-/library.html</loc>
+    <priority>0.8</priority>
+  </url>
+</urlset>
