@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadership & Associations - MASSA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #0A0A0A;
+            background: #F9FAFB;
+        }
+
+        /* Header */
+        .header {
+            background: #FFFFFF;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+            padding: 0 112px;
+            height: 65px;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1368px;
+            margin: 0 auto;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            background: url('FMS.jpg') center/cover;
+        }
+
+        .logo-text h1 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #101828;
+            line-height: 28px;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            font-weight: 400;
+            color: #6A7282;
+            line-height: 16px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #0A0A0A;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        nav a:hover {
+            background: #F3F4F6;
+        }
+
+        .sign-in {
+            background: linear-gradient(98.33deg, #2258DC 9.86%, #397FF3 91.32%);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #FFFFFF !important;
+            padding: 6px 13px;
+        }
+
+        .sign-in:hover {
+            opacity: 0.9;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: #FFFFFF;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 32px 112px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 30px;
+            font-weight: 700;
+            color: #101828;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: #4A5565;
+            max-width: 672px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        main {
+            padding: 32px 36px;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: 64px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .section-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #101828;
+        }
+
+        /* Leadership Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .card {
+            background: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 301px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-content {
+            padding: 12px 24px 24px;
+        }
+
+        .card-name {
+            font-size: 18px;
+            font-weight: 400;
+            color: #0A0A0A;
+            text-align: center;
+            margin-bottom: 14px;
+        }
+
+        .card-badge {
+            display: inline-block;
+            padding: 3px 9px;
+            background: #DBEAFE;
+            color: #193CB8;
+            font-size: 12px;
+            font-weight: 500;
+            border-radius: 8px;
+            margin-bottom: 14px;
+        }
+
+        .card-department {
+            font-size: 14px;
+            color: #4A5565;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        .card-level {
+            font-size: 12px;
+            color: #6A7282;
+            text-align: center;
+            margin-bottom: 17px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding-top: 17px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .social-link {
+            width: 38px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .social-link:hover {
+            background: #F3F4F6;
+        }
+
+        /* Department Cards */
+        .department-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .department-card {
+            background: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .department-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .department-logo {
+            height: 222px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .department-logo img {
+            max-width: 192px;
+            max-height: 192px;
+        }
+
+        .department-content {
+            padding: 0 24px 24px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .department-name {
+            font-size: 20px;
+            font-weight: 400;
+            color: #0A0A0A;
+            text-align: center;
+            margin: 17px 0 16px;
+        }
+
+        .department-btn {
+            width: 100%;
+            padding: 6px 10px;
+            background: #2563EB;
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: 500;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .department-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* Footer */
+        footer {
+            background: #1D4FD7;
+            color: #FFFFFF;
+            padding: 48px 36px;
+        }
+
+        .footer-container {
+            max-width: 1368px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 208px;
+            margin-bottom: 32px;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: #FFFFFF;
+        }
+
+        .footer-bottom {
+            padding-top: 33px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .header {
+                padding: 0 40px;
+            }
+
+            .hero {
+                padding: 32px 40px;
+            }
+
+            .cards-grid,
+            .department-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                gap: 80px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 0 20px;
+                height: auto;
+                padding-top: 16px;
+                padding-bottom: 16px;
+            }
+
+            .header-container {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .hero {
+                padding: 24px 20px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            main {
+                padding: 24px 20px;
+            }
+
+            .cards-grid,
+            .department-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .section {
+                margin-bottom: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="logo"></div>
+                <div class="logo-text">
+                    <h1>MASSA</h1>
+                    <p>Management Sciences Students' Association</p>
+                </div>
+            </div>
+
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">News & Announcements</a>
+                <a href="#">Library</a>
+                <a href="#">Events</a>
+                <a href="#">Leadership</a>
+                <a href="#">Tools</a>
+                <a href="#">About</a>
+                <a href="#" class="sign-in">Sign In</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Leadership & Associations</h1>
+        <p>Meet the dedicated leaders guiding MASSA and explore the diverse departments within the Faculty of Management Sciences.</p>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Students Executive Council -->
+        <section class="section">
+            <div class="section-header">
+                <svg class="section-icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12Z" stroke="#155DFC" stroke-width="2"/>
+                    <path d="M5 21C5 17.13 8.13 14 12 14C15.87 14 19 17.13 19 21" stroke="#155DFC" stroke-width="2"/>
+                </svg>
+                <h2 class="section-title">Students Executive Council</h2>
+            </div>
+
+            <div class="cards-grid">
+                <!-- President -->
+                <div class="card">
+                    <div class="card-image" style="background-image: url('fmskev');"></div>
+                    <div class="card-content">
+                        <h3 class="card-name">Kelvin Chukwuemeke Osadebe</h3>
+                        <div style="text-align: center;">
+                            <span class="card-badge">President</span>
+                        </div>
+                        <p class="card-department">Public Administration</p>
+                        <p class="card-level">400 Level • 2025-2026</p>
+                        <div class="card-footer">
+                            <a href="#" class="social-link">📧</a>
+                            <a href="#" class="social-link">🔗</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vice President -->
+                <div class="card">
+                    <div class="card-image" style="background-image: url('fmsano');"></div>
+                    <div class="card-content">
+                        <h3 class="card-name">Anofi Rukayat Ayomide</h3>
+                        <div style="text-align: center;">
+                            <span class="card-badge">Vice President</span>
+                        </div>
+                        <p class="card-department">Public Administration</p>
+                        <p class="card-level">400 Level • 2025-2026</p>
+                        <div class="card-footer">
+                            <a href="#" class="social-link">📧</a>
+                            <a href="#" class="social-link">🔗</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- General Secretary -->
+                <div class="card">
+                    <div class="card-image" style="background-image: url('Checker.png');"></div>
+                    <div class="card-content">
+                        <h3 class="card-name">Amb. Kelvin Osadebe</h3>
+                        <div style="text-align: center;">
+                            <span class="card-badge">General Secretary</span>
+                        </div>
+                        <p class="card-department">Public Administration</p>
+                        <p class="card-level">400 Level • 2025-2026</p>
+                        <div class="card-footer">
+                            <a href="#" class="social-link">📧</a>
+                            <a href="#" class="social-link">🔗</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more cards as needed -->
+            </div>
+        </section>
+
+        <!-- FMS Associations -->
+        <section class="section">
+            <div class="section-header">
+                <svg class="section-icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#00A63E" stroke-width="2"/>
+                    <circle cx="9" cy="7" r="4" stroke="#00A63E" stroke-width="2"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="#00A63E" stroke-width="2"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="#00A63E" stroke-width="2"/>
+                </svg>
+                <h2 class="section-title">FMS Associations</h2>
+            </div>
+
+            <div class="department-grid">
+                <!-- Accounting -->
+                <div class="department-card">
+                    <div class="department-logo">
+                        <img src="acc log" alt="Accounting Logo">
+                    </div>
+                    <div class="department-content">
+                        <h3 class="department-name">Accounting</h3>
+                        <button class="department-btn">View Department Leadership →</button>
+                    </div>
+                </div>
+
+                <!-- Banking and Finance -->
+                <div class="department-card">
+                    <div class="department-logo">
+                        <img src="fin log" alt="Finance Logo">
+                    </div>
+                    <div class="department-content">
+                        <h3 class="department-name">Banking and Finance</h3>
+                        <button class="department-btn">View Department Leadership →</button>
+                    </div>
+                </div>
+
+                <!-- Business Administration -->
+                <div class="department-card">
+                    <div class="department-logo">
+                        <img src="bus log" alt="Business Logo">
+                    </div>
+                    <div class="department-content">
+                        <h3 class="department-name">Business Administration</h3>
+                        <button class="department-btn">View Department Leadership →</button>
+                    </div>
+                </div>
+
+                <!-- Add more departments as needed -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <div class="logo-section">
+                        <div class="logo"></div>
+                        <div class="logo-text">
+                            <h1>MASSA</h1>
+                            <p>Management Sciences Students' Association</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 16px; opacity: 0.9; font-size: 14px;">
+                        The digital home of the Faculty of Management Sciences - fostering academic excellence, innovation, and student empowerment at Lagos State University.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Library</a></li>
+                        <li><a href="#">News & Announcements</a></li>
+                        <li><a href="#">Events & Calendar</a></li>
+                        <li><a href="#">Projects & Achievements</a></li>
+                        <li><a href="#">Leadership</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li>📧 massa@lasu.edu.ng</li>
+                        <li>📞 +234 800 MASSA-01</li>
+                        <li>📍 Faculty of Management Sciences<br>Lagos State University<br>Ojo, Lagos State, Nigeria</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 Management Sciences Students' Association. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
